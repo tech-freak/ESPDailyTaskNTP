@@ -27,29 +27,23 @@ SOFTWARE.
 V1.1 2016-8-15
 
 */
-
-/*
-Content of credential.h
- 
-char my_SSID[]= " ";  // ssid of your accesspoint
-char my_PASSWORD[]= " ";  // password of access point
-
- Put credentials.h in libraries folder
-
-*/
-
 #include <credentials.h>
 #include <ESP8266WiFi.h>
 #include <ESPDailyTaskNTP.h>
 #include <SNTPtime.h>
 
-char SNTP_SERVER[]="ch.pool.ntp.org";
+//------- WiFi Settings -------
+char my_SSID[]= " ";  // ssid of your accesspoint
+char my_PASSWORD[]= " ";  // password of access point
+
+//------- NTP server -------
+char SNTP_SERVER[]="in.pool.ntp.org";
 
 SNTPtime NTPwork(SNTP_SERVER);
 
 #define RESET_PIN D2
 
-ESPDailyTaskNTP dailyTask(12, 0, 1.0, my_SSID, my_PASSWORD, RESET_PIN); // Hour to do the task
+ESPDailyTaskNTP dailyTask(6, 30, 4.50, my_SSID, my_PASSWORD, RESET_PIN); // Hour to do the task
 
 void setup() {
   Serial.begin(115200);
@@ -60,14 +54,17 @@ void setup() {
   // ------------------ put the code for your daily task here -------------------------------
 
   Serial.println("............ W O R K ...............................");
-  NTPwork.setSNTPtime();
-  strDateTime _time = NTPwork.getTime(1.0, 1);
-  NTPwork.printDateTime(_time);
+  WiFiClient client;
 
-  sendSparkfun(1, "AndreasSpiess", _time.year, _time.month, _time.day, _time.hour, _time.minute);
+  Serial.println("");
+  Serial.println("led on for 3 seconds");
+  digitalWrite(LED, LOW);
+  delay(3000);
   // ----------------------- end of code for your daily task-------------------------------
 
   // and back to sleep once daily code is done
+  Serial.println("............ Bach to sleep...............................");
+
   dailyTask.backToSleep();
 }
 
