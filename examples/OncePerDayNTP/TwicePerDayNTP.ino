@@ -1,6 +1,6 @@
 /*
 
-OncePerDay example for ESP8266
+TwicePerDay example for ESP8266
 This routine gets the unixtime from a NTP server and adjusts it to the time zone and the
 Middle European summer time if requested
 
