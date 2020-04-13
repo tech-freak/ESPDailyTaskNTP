@@ -186,7 +186,7 @@ int ESPDailyTaskNTP::adjustTime() {
                 NTPch.printDateTime(_actualTime);
                 _currentSecs = ((_actualTime.hour * 60) + _actualTime.minute) * 60 + _actualTime.second;
                 _wakeUpSecs = ((_wakeup.hour * 60) + _wakeup.minute) * 60 + _wakeup.second;
-                _seconds=(_wakeUpSecs-_currentSecs>0) ? (_wakeUpSecs-_currentSecs) : (_wakeUpSecs-_currentSecs+(24*3600));
+                _seconds=(_wakeUpSecs-_currentSecs>0) ? (_wakeUpSecs-_currentSecs) : (_wakeUpSecs-_currentSecs+(12*3600));
                 Serial.printf("_currentSecs: %3d\r\n",_currentSecs);
                 Serial.printf("_wakeUpSecs: %3d\r\n",_wakeUpSecs);
                 Serial.printf("_secondsToGo: %3d\r\n",_seconds);
@@ -212,7 +212,7 @@ void ESPDailyTaskNTP::printRtcMem(String place) {
 
 
 void ESPDailyTaskNTP::backToSleep() {
-        rtcMem.counter = 23;     //24 hours to sleep
+        rtcMem.counter = 11;     //24 hours to sleep
         _sleepTime=ONE_HOUR;
         rtcMem.status=COUNTING;
         system_rtc_mem_write(65, &rtcMem, sizeof(rtcMem));
