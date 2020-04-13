@@ -1,5 +1,5 @@
 # ESPDailyTaskNTP
-Schedule one task every day twice at the same time. Deepsleep inbetween
+Schedule one task every day twice at the same time. Deepsleep in-between
 
 Daily task with 12 hr instead of 24 hr
 
