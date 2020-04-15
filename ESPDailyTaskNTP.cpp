@@ -105,7 +105,7 @@ void ESPDailyTaskNTP::sleepOneDay() {
         case RESET:
                 rtcMem.markerFlag = 85;
                 rtcMem.counter = 0;
-                _sleepTime=1;
+                _sleepTime=10;
                 rtcMem.status = CHECK;
                 system_rtc_mem_write(65, &rtcMem, sizeof(rtcMem));
                 printRtcMem("RESET  ");
@@ -114,7 +114,7 @@ void ESPDailyTaskNTP::sleepOneDay() {
 
         case COUNTING:
                 if (rtcMem.counter==0) {
-                        _sleepTime=1;
+                        _sleepTime=10;
                         rtcMem.status=CHECK;
                         system_rtc_mem_write(65, &rtcMem, sizeof(rtcMem));
                         printRtcMem("COUNTING ZERO ");
@@ -153,7 +153,7 @@ void ESPDailyTaskNTP::sleepOneDay() {
                 }
                 else {
                         rtcMem.status=WORK;
-                        _sleepTime=1;
+                        _sleepTime=10;
                         system_rtc_mem_write(65, &rtcMem, sizeof(rtcMem));
                         printRtcMem("CHECK 3  ");
                         ESP.deepSleep(_sleepTime, WAKE_RF_DEFAULT);
