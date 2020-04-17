@@ -40,9 +40,9 @@ SNTPtime NTPch("ch.pool.ntp.org");
 #define OFF 0
 #define ON 1
 
-const unsigned long ONE_SECOND = 1000000;
+const unsigned long ONE_SECOND = 10000000;
 // const unsigned long ONE_SECOND = 1000;  // for testing
-const unsigned long ONE_HOUR =  3595*ONE_SECOND;  //120 seconds per day faster to be sure we are not late
+const unsigned long ONE_HOUR =  3595*1000000;  //120 seconds per day faster to be sure we are not late
 //const unsigned long ONE_HOUR =  2000000;
 //= 60 * 60 * ONE_SECOND;  // number of microseconds (for deep_sleep of one hour)
 
@@ -161,6 +161,9 @@ void ESPDailyTaskNTP::sleepOneDay() {
                 break;
 
         case WORK:
+                break;
+				
+        default:
                 break;
 
         }
