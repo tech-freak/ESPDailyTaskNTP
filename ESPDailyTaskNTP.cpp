@@ -215,7 +215,7 @@ void ESPDailyTaskNTP::printRtcMem(String place) {
 
 
 void ESPDailyTaskNTP::backToSleep() {
-        rtcMem.counter = 11;     //24 hours to sleep
+        rtcMem.counter = 11;     //12 hours to sleep
         _sleepTime=ONE_HOUR;
         rtcMem.status=COUNTING;
         system_rtc_mem_write(65, &rtcMem, sizeof(rtcMem));
